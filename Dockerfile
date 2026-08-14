@@ -9,6 +9,6 @@ RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-s -w" -o proxyrack-manager ./cm
 # Runtime stage
 FROM alpine:3.20
 RUN apk add --no-cache ca-certificates
-COPY --from=builder /app/pool-manager /usr/local/bin/pool-manager
-EXPOSE 8555
+COPY --from=builder /app/proxyrack-manager /usr/local/bin/proxyrack-manager
+EXPOSE 8080
 ENTRYPOINT ["proxyrack-manager"]
